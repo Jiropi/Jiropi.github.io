@@ -33,25 +33,27 @@ function init()
     {
         setTimeout(() =>
         {
-            onresize();
+            onResize();
         }, 2000);
     });
 
-    function onresize()
+    addEventListener('resize', () => {onResize();});
+
+    function onResize()
     {
-        arToolkitSource.OnResizeElement();
+        arToolkitSource.onResizeElement();
         arToolkitSource.copyElementSizeTo(renderer.domElement);
-        if(arToolkitContext.arController != null)
+        if(arToolkitContext.arController !== null)
         {
             arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas);
         }
     };
 
-    const arToolkitContext = new THREEx.arToolkitContext
+    const arToolkitContext = new THREEx.ArToolkitContext
     (
         {
-            cameraParameterUrl : 'data/camera_para.dat',
-            detecionMode : 'mono'
+            cameraParametersUrl : 'data/camera_para.dat',
+            detectionMode : 'mono'
         }
     );
 
@@ -60,7 +62,7 @@ function init()
         camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
     });
 
-    const arMarkerControls = new THREEx.arMarkerControls
+    const arMarkerControls = new THREEx.ArMarkerControls
     (
         arToolkitContext,
         camera,
@@ -92,7 +94,7 @@ function init()
         if(animations && animations.length)
         {
             let i;
-            animationMixer = new THREE.animationMixer(model);
+            animationMixer = new THREE.AnimationMixer(model);
             for(i = 0; i < animations.length; i++)
             {
                 animationMixer.clipAction(animations[i]).play();
