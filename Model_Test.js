@@ -19,7 +19,7 @@ function init()
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(45, width/height, 1, 10000);
-    camera.position.set(0,40, +200);
+    camera.position.set(0,0, +200);
 
     let clock = new THREE.Clock();
     let animationMixer = null;
@@ -31,7 +31,7 @@ function init()
     loader.setCrossOrigin( 'anonymous' );
     const dloader = new THREE.DRACOLoader();
     loader.setDRACOLoader(dloader);
-    loader.load('model/Test02.glb', function(gltf)
+    loader.load('model/Monky.glb', function(gltf)
     {
         model = gltf.scene;
         model.scale.set(40.0, 40.0, 40.0);
